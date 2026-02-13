@@ -1,30 +1,267 @@
-:root{--bg:#0b0b0c;--panel:#141416;--text:#f1f1f1;--muted:#cfcfcf;--gold:#d4af37;--link:#f5d06a}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
-a{color:var(--link)}
-.container{max-width:1100px;margin:0 auto;padding:28px}
-.header{display:flex;gap:16px;align-items:center;padding:18px 28px;border-bottom:1px solid #1f1f22;background:#0d0d0f;position:sticky;top:0;z-index:10}
-.logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#544200);display:flex;align-items:center;justify-content:center;color:#0b0b0c;font-weight:800}
-.brand{font-weight:700;letter-spacing:.3px}
-.nav{margin-left:auto;display:flex;gap:14px}
-.nav a{padding:10px 14px;border-radius:8px;color:var(--text);text-decoration:none}
-.nav a.active,.nav a:hover{background:rgba(212,175,55,.16)}
-.hero{padding:42px 0 8px}
-.title{font-size:44px;line-height:1.1;margin:0 0 8px}
-.subtitle{color:var(--muted);font-size:18px;margin:0 0 24px}
-.hero-img{width:100%;border-radius:14px;border:1px solid #242428;box-shadow:0 8px 24px rgba(0,0,0,.4);object-fit:cover;aspect-ratio:16/9}
-.section{background:var(--panel);border:1px solid #1f1f22;border-radius:16px;padding:22px;margin:26px 0;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-.h2{margin:0 0 14px;font-size:26px}
-.kv{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.kv .item{background:#0f0f11;border:1px solid #1e1e22;border-radius:12px;padding:14px}
-.btn{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--gold);color:#0b0b0c;text-decoration:none;font-weight:700}
-.btn:hover{filter:brightness(1.05)}
-.footer{padding:26px;color:#bdbdbd;text-align:center;border-top:1px solid #1f1f22;margin-top:44px}
-.badge{display:inline-block;padding:6px 10px;border:1px dashed #57460c;border-radius:999px;color:#f6e6a8;background:rgba(212,175,55,.1);font-size:12px}
-.center{text-align:center}
-.placeholder{width:100%;aspect-ratio:16/9;background:repeating-linear-gradient(45deg,#191919,#191919 12px,#141414 12px,#141414 24px);border-radius:14px;border:1px solid #242428;color:#f0f0f0;display:flex;align-items:center;justify-content:center;font-weight:700;letter-spacing:.08em}
-.video{width:100%;aspect-ratio:16/9;border:1px solid #242428;border-radius:14px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.gallery img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;border:1px solid #242428}
-.note{font-size:14px;color:#cfcfcf}
-@media(max-width:720px){.kv{grid-template-columns:1fr}.title{font-size:36px}}
+/* ================================
+   Abenathi Turns 30 – Theme Styles
+   ================================ */
+
+/* ---- Theme tokens ---- */
+:root{
+  --bg:#0b0b0c;      /* page background */
+  --panel:#141416;   /* cards/sections */
+  --text:#f1f1f1;    /* main text */
+  --muted:#cfcfcf;   /* secondary text */
+  --gold:#d4af37;    /* buttons & accents */
+  --link:#f5d06a;    /* link colour */
+}
+
+/* ---- Base ---- */
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+}
+
+/* Respect iOS safe areas (subtle) */
+html, body{
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+a{ color:var(--link); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.container{ max-width:1100px; margin:0 auto; padding:28px; }
+
+/* ---- Header / Nav ---- */
+.header{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  padding:18px 28px;
+  border-bottom:1px solid #1f1f22;
+  background:#0d0d0f;
+  position:sticky; top:0; z-index:10;
+  flex-wrap:wrap;           /* allow neat wrapping on small screens */
+}
+
+.logo{
+  width:44px; height:44px; border-radius:8px;
+  background:linear-gradient(135deg,var(--gold),#544200);
+  display:flex; align-items:center; justify-content:center;
+  color:#0b0b0c; font-weight:800;
+  margin-right:12px;
+}
+
+.brand{ font-weight:700; letter-spacing:.3px; white-space:nowrap; }
+
+.nav{ margin-left:auto; display:flex; gap:14px; flex-wrap:wrap; }
+.nav a{
+  padding:10px 14px; border-radius:8px; color:var(--text); text-decoration:none;
+}
+.nav a.active,
+.nav a:hover{ background:rgba(212,175,55,.16); }
+
+/* ---- Hero ---- */
+.hero{ padding:42px 0 8px; }
+.title{ font-size:44px; line-height:1.1; margin:0 0 8px; }
+.subtitle{ color:var(--muted); font-size:18px; margin:0 0 24px; }
+
+/* Responsive hero image:
+   - 16:9 by default
+   - uses object-fit:cover so it fills and crops neatly */
+.hero-img{
+  width:100%;
+  border-radius:14px;
+  border:1px solid #242428;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  object-fit:cover;
+  aspect-ratio:16/9;
+}
+
+/* ---- Sections / Cards ---- */
+.section{
+  background:var(--panel);
+  border:1px solid #1f1f22;
+  border-radius:16px;
+  padding:22px;
+  margin:26px 0;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+
+.h2{ margin:0 0 14px; font-size:26px; }
+
+/* ---- Key/Value grid on Details page ---- */
+.kv{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.kv .item{
+  background:#0f0f11;
+  border:1px solid #1e1e22;
+  border-radius:12px;
+  padding:14px;
+}
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:10px;
+  background:var(--gold);
+  color:#0b0b0c;
+  text-decoration:none;
+  font-weight:700;
+}
+.btn:hover{ filter:brightness(1.05); }
+
+/* Button rows (used on Gallery page) */
+.btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
+.btn.primary{ background:var(--gold); color:#0b0b0c; }
+.btn.secondary{ background:#2b2b2e; color:#eaeaea; border:1px solid #3a3a3f; }
+
+/* ---- Footer ---- */
+.footer{
+  padding:26px;
+  color:#bdbdbd;
+  text-align:center;
+  border-top:1px solid #1f1f22;
+  margin-top:44px;
+}
+
+/* ---- Misc ---- */
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px dashed #57460c;
+  border-radius:999px;
+  color:#f6e6a8;
+  background:rgba(212,175,55,.1);
+  font-size:12px;
+}
+.center{ text-align:center; }
+
+.placeholder{
+  width:100%;
+  aspect-ratio:16/9;
+  background:repeating-linear-gradient(45deg,#191919,#191919 12px,#141414 12px,#141414 24px);
+  border-radius:14px; border:1px solid #242428;
+  color:#f0f0f0; display:flex; align-items:center; justify-content:center;
+  font-weight:700; letter-spacing:.08em;
+}
+
+.video{ width:100%; aspect-ratio:16/9; border:1px solid #242428; border-radius:14px; }
+
+/* ---- Gallery grid (if you ever re‑enable thumbnails) ---- */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+}
+.gallery img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid #242428;
+}
+
+/* Subtle helper text style */
+.note{ font-size:14px; color:#cfcfcf; }
+
+/* ---- Small tablets (≤ 720px) ---- */
+@media (max-width:720px){
+  .title{ font-size:36px; }
+  .container{ padding:22px; }
+  .section{ padding:20px; }
+  .btn-row{ gap:10px; }
+  .btn{ padding:10px 14px; }
+  .hero-img{
+    aspect-ratio:16/9; /* keep cinematic shape at this size */
+    height:auto;       /* natural height; still cropped by object-fit */
+    object-fit:cover;
+  }
+}
+
+/* ---- Mid phones (≤ 600px) — slightly shorter hero ---- */
+@media (max-width:600px){
+  .hero-img{
+    height:36vh;
+    min-height:180px;
+    max-height:320px;
+    aspect-ratio:auto;  /* height governs at this size */
+    object-position:center 45%;
+    border-radius:12px;
+  }
+}
+
+/* ---- Phones (≤ 480px) — tight, touch‑friendly layout ---- */
+@media (max-width:480px){
+
+  /* Page padding & card spacing */
+  .container{ padding:16px; }
+  .section{
+    padding:16px;
+    margin-top:16px;
+    border-radius:10px;
+  }
+
+  /* Headings & text scale */
+  .title{                 /* “Abenathi Turns 30” */
+    font-size:28px;
+    line-height:1.15;
+    margin-bottom:8px;
+  }
+  .subtitle{ font-size:15px; }
+  .h2{ font-size:20px; margin-bottom:10px; }
+
+  /* Header: logo + brand + nav */
+  .header{ padding:12px 14px; gap:10px; }
+  .logo{ width:36px; height:36px; margin-right:8px; }
+  .brand{
+    font-size:14px;            /* prevent wrap */
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    max-width:50vw;            /* keep brand from pushing nav off */
+  }
+  .nav{ gap:6px; }
+  .nav a{
+    padding:8px 10px;          /* larger tap target */
+    font-size:13px;
+    border-radius:6px;
+  }
+
+  /* Hero image: banner feel on phones */
+  .hero-img{
+    width:100%;
+    height:40vh;               /* handy banner height */
+    min-height:200px;
+    max-height:360px;
+    aspect-ratio:auto;         /* use height control */
+    object-fit:cover;          /* crop edges neatly */
+    object-position:center 45%;
+    border-radius:10px;
+  }
+
+  /* Details grid stacks to one column */
+  .kv{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .kv .item{ padding:12px; border-radius:8px; }
+
+  /* Gallery upload/download buttons stack vertically */
+  .btn-row{
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+    margin-top:12px;
+  }
+  .btn{ text-align:center; padding:12px 14px; font-size:15px; border-radius:8px; }
+
+  /* Footer */
+  .footer{ padding:16px 12px; font-size:12px; }
+}

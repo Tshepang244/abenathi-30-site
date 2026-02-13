@@ -1,4 +1,4 @@
-# Abenathi Turns 30 — Images‑Ready Website
+# Abenathi Turns 30 
 
 This package is ready for you to drop in your images and deploy to Vercel.
 
@@ -6,7 +6,6 @@ This package is ready for you to drop in your images and deploy to Vercel.
 - **Hero (Home):** `assets/img/hero.jpg`
 - **Gallery:** `assets/img/gallery1.jpg` … `assets/img/gallery12.jpg`
 
-> Replace the empty placeholder files with your real JPGs (same names). Keep the hero roughly 1600×900 for best results.
 
 ## Links already wired
 - Video teaser (Google Drive preview iframe)

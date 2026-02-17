@@ -4,12 +4,12 @@
 
 /* ---- Theme tokens ---- */
 :root{
-  --bg:#0b0b0c;      /* page background */
-  --panel:#141416;   /* cards/sections */
-  --text:#f1f1f1;    /* main text */
-  --muted:#cfcfcf;   /* secondary text */
-  --gold:#d4af37;    /* buttons & accents */
-  --link:#f5d06a;    /* link colour */
+  --bg:#0b0b0c;
+  --panel:#141416;
+  --text:#f1f1f1;
+  --muted:#cfcfcf;
+  --gold:#d4af37;
+  --link:#f5d06a;
 }
 
 /* ---- Base ---- */
@@ -23,7 +23,7 @@ html,body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
 }
 
-/* Respect iOS safe areas (subtle) */
+/* iOS safe areas */
 html, body{
   padding-top: env(safe-area-inset-top);
   padding-left: env(safe-area-inset-left);
@@ -35,7 +35,7 @@ a:hover{ text-decoration:underline; }
 
 .container{ max-width:1100px; margin:0 auto; padding:28px; }
 
-/* ---- Header / Nav ---- */
+/* ---- Header ---- */
 .header{
   display:flex;
   gap:16px;
@@ -44,7 +44,7 @@ a:hover{ text-decoration:underline; }
   border-bottom:1px solid #1f1f22;
   background:#0d0d0f;
   position:sticky; top:0; z-index:10;
-  flex-wrap:wrap;           /* allow neat wrapping on small screens */
+  flex-wrap:wrap;
 }
 
 .logo{
@@ -69,9 +69,6 @@ a:hover{ text-decoration:underline; }
 .title{ font-size:44px; line-height:1.1; margin:0 0 8px; }
 .subtitle{ color:var(--muted); font-size:18px; margin:0 0 24px; }
 
-/* Responsive hero image:
-   - 16:9 by default
-   - uses object-fit:cover so it fills and crops neatly */
 .hero-img{
   width:100%;
   border-radius:14px;
@@ -81,7 +78,18 @@ a:hover{ text-decoration:underline; }
   aspect-ratio:16/9;
 }
 
-/* ---- Sections / Cards ---- */
+/* ---- Close-up image ---- */
+.closeup-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+/* ---- Sections ---- */
 .section{
   background:var(--panel);
   border:1px solid #1f1f22;
@@ -93,7 +101,7 @@ a:hover{ text-decoration:underline; }
 
 .h2{ margin:0 0 14px; font-size:26px; }
 
-/* ---- Key/Value grid on Details page ---- */
+/* ---- Key/value grid ---- */
 .kv{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -118,7 +126,6 @@ a:hover{ text-decoration:underline; }
 }
 .btn:hover{ filter:brightness(1.05); }
 
-/* Button rows (used on Gallery page) */
 .btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
 .btn.primary{ background:var(--gold); color:#0b0b0c; }
 .btn.secondary{ background:#2b2b2e; color:#eaeaea; border:1px solid #3a3a3f; }
@@ -132,7 +139,7 @@ a:hover{ text-decoration:underline; }
   margin-top:44px;
 }
 
-/* ---- Misc ---- */
+/* ---- Badges ---- */
 .badge{
   display:inline-block;
   padding:6px 10px;
@@ -144,18 +151,39 @@ a:hover{ text-decoration:underline; }
 }
 .center{ text-align:center; }
 
-.placeholder{
-  width:100%;
-  aspect-ratio:16/9;
-  background:repeating-linear-gradient(45deg,#191919,#191919 12px,#141414 12px,#141414 24px);
-  border-radius:14px; border:1px solid #242428;
-  color:#f0f0f0; display:flex; align-items:center; justify-content:center;
-  font-weight:700; letter-spacing:.08em;
+/* ==================================================
+   NEW: Replace placeholder with seating background
+   ==================================================*/
+.seating-bg {
+  background-image: url('assets/img/comingsoon.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+
+  border-radius: 14px;
+  border: 1px solid #242428;
+
+  aspect-ratio: 16 / 9;
 }
 
+/* Remove original diagonal pattern */
+.placeholder {
+  background: none !important;
+}
+
+/* ---- Videos ---- */
 .video{ width:100%; aspect-ratio:16/9; border:1px solid #242428; border-radius:14px; }
 
-/* ---- Gallery grid (if you ever re‑enable thumbnails) ---- */
+/* ---- Gallery ---- */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
@@ -169,39 +197,30 @@ a:hover{ text-decoration:underline; }
   border:1px solid #242428;
 }
 
-/* Subtle helper text style */
+/* Helper text */
 .note{ font-size:14px; color:#cfcfcf; }
 
-/* ---- Small tablets (≤ 720px) ---- */
+/* ---- Responsive ---- */
 @media (max-width:720px){
   .title{ font-size:36px; }
   .container{ padding:22px; }
   .section{ padding:20px; }
-  .btn-row{ gap:10px; }
-  .btn{ padding:10px 14px; }
   .hero-img{
-    aspect-ratio:16/9; /* keep cinematic shape at this size */
-    height:auto;       /* natural height; still cropped by object-fit */
-    object-fit:cover;
+    aspect-ratio:16/9;
+    height:auto;
   }
 }
 
-/* ---- Mid phones (≤ 600px) — slightly shorter hero ---- */
 @media (max-width:600px){
   .hero-img{
     height:36vh;
     min-height:180px;
     max-height:320px;
-    aspect-ratio:auto;  /* height governs at this size */
     object-position:center 45%;
-    border-radius:12px;
   }
 }
 
-/* ---- Phones (≤ 480px) — tight, touch‑friendly layout ---- */
 @media (max-width:480px){
-
-  /* Page padding & card spacing */
   .container{ padding:16px; }
   .section{
     padding:16px;
@@ -209,59 +228,83 @@ a:hover{ text-decoration:underline; }
     border-radius:10px;
   }
 
-  /* Headings & text scale */
-  .title{                 /* “Abenathi Turns 30” */
+  .title{
     font-size:28px;
     line-height:1.15;
-    margin-bottom:8px;
   }
   .subtitle{ font-size:15px; }
-  .h2{ font-size:20px; margin-bottom:10px; }
+  .h2{ font-size:20px; }
 
-  /* Header: logo + brand + nav */
   .header{ padding:12px 14px; gap:10px; }
-  .logo{ width:36px; height:36px; margin-right:8px; }
+  .logo{ width:36px; height:36px; }
   .brand{
-    font-size:14px;            /* prevent wrap */
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    max-width:50vw;            /* keep brand from pushing nav off */
-  }
-  .nav{ gap:6px; }
-  .nav a{
-    padding:8px 10px;          /* larger tap target */
-    font-size:13px;
-    border-radius:6px;
+    font-size:14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:50vw;
   }
 
-  /* Hero image: banner feel on phones */
+  .nav a{
+    padding:8px 10px;
+    font-size:13px;
+  }
+
   .hero-img{
     width:100%;
-    height:40vh;               /* handy banner height */
+    height:40vh;
     min-height:200px;
-    max-height:360px;
-    aspect-ratio:auto;         /* use height control */
-    object-fit:cover;          /* crop edges neatly */
     object-position:center 45%;
-    border-radius:10px;
   }
 
-  /* Details grid stacks to one column */
   .kv{
-    display:grid;
     grid-template-columns:1fr;
-    gap:10px;
   }
-  .kv .item{ padding:12px; border-radius:8px; }
 
-  /* Gallery upload/download buttons stack vertically */
   .btn-row{
     flex-direction:column;
-    align-items:stretch;
     gap:10px;
-    margin-top:12px;
   }
-  .btn{ text-align:center; padding:12px 14px; font-size:15px; border-radius:8px; }
 
-  /* Footer */
   .footer{ padding:16px 12px; font-size:12px; }
+}
+}/* Overlay container matches the image size and centers */
+.hero-with-overlay {
+  position: relative;
+  width: clamp(260px, 90vw, 420px); /* min 260px, scales, max 420px */
+  margin: 0 auto;                   /* center block */
+  border-radius: 14px;
+}
+
+/* Image respects container width and keeps aspect without cropping */
+.seat-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  object-fit: contain; /* don't crop */
+}
+
+/* Overlay text on top of the image */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: clamp(18px, 4vw, 28px);
+  letter-spacing: 0.06em;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+  border-radius: 14px;
+  pointer-events: none;
+
+  /* If you want a subtle dark veil for readability, keep this.
+     Remove the background line if you don't want the dim effect. */
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.18),
+    rgba(0,0,0,0.38)
+  );
 }
